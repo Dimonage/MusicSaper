@@ -59,3 +59,29 @@ class Square:
                 grid[n[1]][n[0]].show_tiles(grid, n)
             else:
                 grid[n[1]][n[0]].covered = False
+
+class Grid:
+    colours = {1: (0, 0, 255),
+               2: (50, 205, 50),
+               3: (255, 140, 0),
+               4: (255, 0, 0),
+               5: (148, 0, 211),
+               6: (220, 20, 60),
+               7: (0, 206, 209),
+               8: (255, 105, 180)}
+
+    mine_distribution = 8
+
+ def __init__(self, surf_size, square_size, blit_dest=[0, 0]):
+        self.surf = pygame.Surface(surf_size)
+        self.resolution = [int(i / square_size) for i in self.surf.get_size()]
+
+        self.size = square_size
+        self.blit_dest = blit_dest
+
+        self.generated = False
+        self.mines_count = int(numpy.prod(self.resolution) // self.mine_distribution)
+        self.flags = self.mines_count
+
+        self.grid = [[Square() for i in range(self.resolution[0])] for i in range(self.resolution[1])]
+        self.font = pygame.font.SysFont(font, self.size)
