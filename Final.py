@@ -188,3 +188,71 @@ class Grid:
             pygame.draw.line(self.surf, (0, 0, 0), [0, y * self.size], [surf.get_width(), y * self.size], 1)
 
         surf.blit(self.surf, self.blit_dest)
+
+    def game_status(self):
+            if not any(
+                    any(
+                        (s.flagged and not s.number == -1) or (not s.flagged and s.number == -1) for s in row_) for row_
+                    in
+                    self.grid) and all(
+                all(not t.covered or (t.covered and t.flagged) for t in _row) for _row in self.grid):
+                return True
+            elif any(
+                    any(g.number == -1 and not g.covered for g in row) for row in self.grid):
+                return False
+            else:
+                return None
+
+    def reset(self, square_size=None):
+            if square_size is not None:
+                self.resolution = [int(i / square_size) for i in self.surf.get_size()]
+                self.size = square_size
+                self.mines_count = int(numpy.prod(self.resolution) // self.mine_distribution)
+                self.font = pygame.font.SysFont(font, self.size)
+
+            self.grid = [[Square() for _ in range(self.resolution[0])] for _ in range(self.resolution[1])]
+            self.generated = False
+            self.flags = self.mines_count
+
+
+class Info:
+
+    def __init__(self, surf_size, grid, blit_dest):
+        self.grid = grid
+        self.surf = pygame.Surface(surf_size)
+
+        self.t = pygame.time.get_ticks()
+        self.blit_dest = blit_dest
+        self.h1 = pygame.font.SysFont(font, 50)
+        self.h2 = pygame.font.SysFont(font, 30)
+
+    def update(self):
+        self.surf.fill((250, 250, 255))
+        pygame.draw.line(self.surf, (0, 0, 0), [0, 0], [0, self.surf.get_height()], 1)
+
+        image1 = pygame.image.load(os.path.join('foto/photo.jpg'))
+        image11 = pygame.transform.scale(image1, (200, 200))
+        self.surf.blit(image11, (50, 450))
+
+        score = self.h2.render("best score: {}".format(sc), False, (0, 0, 0))
+        self.surf.blit(score, score.get_rect(center=[self.surf.get_width() / 2, self.surf.get_height() / 5]))
+
+        flag = self.h2.render("Flags: {}/{}".format(self.grid.flags, self.grid.mines_count), True, (0, 0, 0))
+        self.surf.blit(flag, flag.get_rect(center=[self.surf.get_width() / 2, self.surf.get_height() / 2 - 50]))
+
+        time_ = self.h2.render("Time: {}".format(int(pygame.time.get_ticks() - self.t) // 1000), True, (0, 0, 0))
+        self.surf.blit(time_, time_.get_rect(center=[self.surf.get_width() / 2, self.surf.get_height() / 2]))
+
+        levels = {100: "Easy",
+                  50: "Medium",
+                  25: "Hard"}
+        difficulty = self.h2.render("Difficulty: {}".format(levels[self.grid.size]), True, (0, 0, 0))
+        self.surf.blit(difficulty, difficulty.get_rect(center=[self.surf.get_width() / 2,
+                                                               self.surf.get_height() / 2 + 50]))
+
+    def draw(self, surf):
+        surf.blit(self.surf, self.blit_dest)
+
+    def reset(self):
+        self.t = pygame.time.get_ticks()
+
