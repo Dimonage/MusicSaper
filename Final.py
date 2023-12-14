@@ -145,3 +145,46 @@ class Grid:
                     self.grid[grid_x[1]][grid_x[0]].flagged = False
 
                 self.flags = self.mines_count - sum(sum(i.flagged for i in row) for row in self.grid)
+
+    def coords_to_grid_x(self, pos):
+        if all(x < self.resolution[p] for p, x in
+               enumerate([int((pos[i] - self.blit_dest[i]) // self.size) for i in range(2)])):
+            return [int((pos[i] - self.blit_dest[i]) // self.size) for i in range(2)]
+        else:
+            return None
+
+    def draw(self, surf):
+        for y, row in enumerate(self.grid):
+            for x, square in enumerate(row):
+                if not square.covered:
+                    pygame.draw.rect(self.surf, (255, 255, 255), (x * self.size, y * self.size, self.size, self.size),
+                                     0)
+
+                    if square.number == -1:
+                        pygame.draw.circle(self.surf, (255, 0, 0),
+                                           [int(x * self.size + (self.size / 2)), int(y * self.size + (self.size / 2))],
+                                           int(self.size / 4), 0)
+                    elif square.number:
+                        message = self.font.render(str(square.number), True, self.colours[square.number])
+                        self.surf.blit(message, message.get_rect(
+                            center=[x * self.size + (self.size / 2), y * self.size + (self.size / 2)]))
+                else:
+                    pygame.draw.rect(self.surf, (150, 150, 150), (x * self.size, y * self.size, self.size, self.size),
+                                     0)
+
+                    if square.flagged:
+                        pygame.draw.polygon(self.surf, (255, 0, 0),
+                                            [[x * self.size + (0.3 * self.size), y * self.size + (0.2 * self.size)],
+                                             [x * self.size + (0.4 * self.size), y * self.size + (0.2 * self.size)],
+                                             [x * self.size + (0.4 * self.size), y * self.size + (0.22 * self.size)],
+                                             [x * self.size + (0.8 * self.size), y * self.size + (0.4 * self.size)],
+                                             [x * self.size + (0.4 * self.size), y * self.size + (0.6 * self.size)],
+                                             [x * self.size + (0.4 * self.size), y * self.size + (0.8 * self.size)],
+                                             [x * self.size + (0.3 * self.size), y * self.size + (0.8 * self.size)]], 0)
+
+        for x in range(1, len(self.grid[0])):
+            pygame.draw.line(self.surf, (0, 0, 0), [x * self.size, 0], [x * self.size, surf.get_height()], 1)
+        for y in range(1, len(self.grid)):
+            pygame.draw.line(self.surf, (0, 0, 0), [0, y * self.size], [surf.get_width(), y * self.size], 1)
+
+        surf.blit(self.surf, self.blit_dest)
