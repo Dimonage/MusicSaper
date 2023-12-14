@@ -85,3 +85,63 @@ class Grid:
 
         self.grid = [[Square() for i in range(self.resolution[0])] for i in range(self.resolution[1])]
         self.font = pygame.font.SysFont(font, self.size)
+
+        def generate(self, pos):
+            count = 0
+            while count < self.mines_count:
+                for p, i in enumerate(self.grid):
+                    for q, j in enumerate(i):
+                        if random.randint(1, self.mine_distribution) == 1 and not \
+                                [q, p] in [i for i in [pos,
+                                                       [pos[0] - 1, pos[1] - 1],
+                                                       [pos[0], pos[1] - 1],
+                                                       [pos[0] + 1, pos[1] - 1],
+                                                       [pos[0] - 1, pos[1]],
+                                                       [pos[0] + 1, pos[1]],
+                                                       [pos[0] - 1, pos[1] + 1],
+                                                       [pos[0], pos[1] + 1],
+                                                       [pos[0] + 1, pos[1] + 1]]
+                                           if (0 <= i[0] < len(self.grid[0]) and
+                                               0 <= i[1] < len(self.grid))] and not \
+                                j.number == -1 and count < self.mines_count:
+                            j.number = -1
+                            count += 1
+
+            for y, row in enumerate(self.grid):
+                for x, col in enumerate(row):
+                    surrounding_mines = 0
+
+                    if col.number == -1:
+                        continue
+
+                    combinations = [[x - 1, y - 1], [x, y - 1], [x + 1, y - 1], [x - 1, y], [x + 1, y], [x - 1, y + 1],
+                                    [x, y + 1], [x + 1, y + 1]]
+                    for combination in combinations:
+                        if 0 <= combination[0] < len(self.grid[0]) and 0 <= combination[1] < len(self.grid):
+                            if self.grid[combination[1]][combination[0]].number == -1:
+                                surrounding_mines += 1
+
+                    col.number = surrounding_mines
+
+            self.generated = True
+
+        def tile_click(self, pos, button):
+            grid_x = self.coords_to_grid_x(pos)
+
+            if grid_x is None:
+                return
+            if not self.generated:
+                self.generate(grid_x)
+
+            if button == 1 and not self.grid[grid_x[1]][grid_x[0]].flagged:
+                if self.grid[grid_x[1]][grid_x[0]].number:
+                    self.grid[grid_x[1]][grid_x[0]].covered = False
+                else:
+                    self.grid[grid_x[1]][grid_x[0]].show_tiles(self.grid, grid_x)
+            elif button == 3:
+                if self.flags > 0 and not self.grid[grid_x[1]][grid_x[0]].flagged:
+                    self.grid[grid_x[1]][grid_x[0]].flagged = True
+                elif self.grid[grid_x[1]][grid_x[0]].flagged:
+                    self.grid[grid_x[1]][grid_x[0]].flagged = False
+
+                self.flags = self.mines_count - sum(sum(i.flagged for i in row) for row in self.grid)
