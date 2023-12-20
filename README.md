@@ -18,3 +18,7 @@
 ![Игра2](https://github.com/Dimonage/MusicSaper/assets/144340113/5e5200eb-f7e1-49dd-aec8-c8365a9f226c)
 Экран поражения
 ![Поражение](https://github.com/Dimonage/MusicSaper/assets/144340113/0d4843b8-aa03-4a49-9d11-a56baef8580a)
+Use-case
+![Use-case](https://github.com/Dimonage/MusicSaper/assets/144340113/abc5b8c1-3f38-435e-9e20-f799ae2a7933)
+Block схема
+![Block схема](https://github.com/Dimonage/MusicSaper/assets/144340113/f7463679-a561-4ed4-8e78-8646fc5787c1)
