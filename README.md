@@ -26,3 +26,4 @@ Block схема
 ![ССВУ Minesweeper Extend](https://github.com/Dimonage/MusicSaper/assets/144340113/cd67fe07-1c78-4af8-a0b9-e7a323e8508e)
 Схема вероятностей
 ![Димасу](https://github.com/Dimonage/MusicSaper/assets/144340113/6fef404a-3944-45c7-bfd0-55ae5cd77cfb)
+[Устав проекта Minesweeper Extend .docx](https://github.com/Dimonage/MusicSaper/files/14693128/Minesweeper.Extend.docx)
