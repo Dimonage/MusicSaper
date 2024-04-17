@@ -30,3 +30,8 @@ Block схема
 [Устав проекта Minesweeper Extend .docx](https://github.com/Dimonage/MusicSaper/files/14693128/Minesweeper.Extend.docx)
 Диаграмма Исикавы
 ![Screenshot_20240417_155028](https://github.com/Dimonage/MusicSaper/assets/144340113/5516ed3f-4a3a-422b-9c1a-f92c76836bdf)
+Коммуникационный план по задачам
+![Коммуникация](https://github.com/Dimonage/MusicSaper/assets/144340113/14bba5ac-1797-4503-bfc6-59ff2dc2d278)
+idef0
+![Idef0](https://github.com/Dimonage/MusicSaper/assets/144340113/0b92baa2-5efa-4d55-8cdd-ffe65bdcdb7f)
+
