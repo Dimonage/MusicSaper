@@ -34,5 +34,7 @@ Block схема
 ![Коммуникация](https://github.com/Dimonage/MusicSaper/assets/144340113/14bba5ac-1797-4503-bfc6-59ff2dc2d278)
 idef0
 ![Idef0](https://github.com/Dimonage/MusicSaper/assets/144340113/35890eb9-a267-47bc-a3c3-b73b56d331ef)
+АРМ
+![АРМ](https://github.com/Dimonage/MusicSaper/assets/144340113/58587e33-fa29-45ce-8c72-8e15a867cc1f)
 
 
