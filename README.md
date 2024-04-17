@@ -33,5 +33,6 @@ Block схема
 Коммуникационный план по задачам
 ![Коммуникация](https://github.com/Dimonage/MusicSaper/assets/144340113/14bba5ac-1797-4503-bfc6-59ff2dc2d278)
 idef0
-![Idef0](https://github.com/Dimonage/MusicSaper/assets/144340113/0b92baa2-5efa-4d55-8cdd-ffe65bdcdb7f)
+![Idef0](https://github.com/Dimonage/MusicSaper/assets/144340113/35890eb9-a267-47bc-a3c3-b73b56d331ef)
+
 
