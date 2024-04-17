@@ -28,3 +28,5 @@ Block схема
 ![Димасу](https://github.com/Dimonage/MusicSaper/assets/144340113/6fef404a-3944-45c7-bfd0-55ae5cd77cfb)
 
 [Устав проекта Minesweeper Extend .docx](https://github.com/Dimonage/MusicSaper/files/14693128/Minesweeper.Extend.docx)
+Диаграмма Исикавы
+![Screenshot_20240417_155028](https://github.com/Dimonage/MusicSaper/assets/144340113/5516ed3f-4a3a-422b-9c1a-f92c76836bdf)
