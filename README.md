@@ -37,6 +37,7 @@ idef0
 
 АРМ
 ![АРМ](https://github.com/Dimonage/MusicSaper/assets/144340113/f088708f-b3e3-437f-9c42-9c71805fe00c)
-
+Устав проекта
+![MVC4R5Smrmg](https://github.com/Dimonage/MusicSaper/assets/144340113/98c429ec-a83c-452a-8f94-496079ceb1f1)
 
 
